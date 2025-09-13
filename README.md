@@ -5,7 +5,7 @@ Asynchronous JavaScript and XML (AJAX) is a web development technique in which a
 GajaxLib provides pre-defined function which makes making asynchronous HTTP request a piece of cake.
 
 ---
-### Getting Started
+## Getting Started
 Include the gajaxlib.js file in your index.html file  
 
 ```html
