@@ -1,17 +1,20 @@
-function gajaxLib(url, requestMethod, async, callback) {
-    xhr = false;
+function gajaxLib(requestMethod, url) {
+    let xhr = false;
     
     if (window.XMLHttpRequest) {
         xhr = new XMLHttpRequest()
     } else if (window.XActiveObject) {
-        xhr = new XActiveObject("Microsoft.XMLHTTP")
+        xhr = new XActiveObject("Microsoft.XMLHTTP")  
     }
+ 
+    if (xhr) {
+        xhr.open(requestMethod, url)
+        xhr.send(null)
 
-    xhr.get(url, requestMethod, async)
-    xhr.send()
-
-    xhr.addEventListener('onreadystatechange', () => {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-        }
-    })
+        xhr.addEventListener('readystatechange', () => {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText)
+            }
+        })
+    }
 }
