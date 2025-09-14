@@ -50,8 +50,12 @@ function gajaxLib(requestMethod="GET", url, callback, data = null,) {
                                 else if (data === "Content-Length") callback(xhr.getResponseHeader("Content-Length"))
                                 else if (data === "Host") callback(xhr.getResponseHeader("Host"))
                                 else callback(xhr.getResponseHeader("Connection"))
-                            } else if(typeof data === "object" && typeof data === "object" && data.constructor === Object) {
-                                
+                            } else if(data instanceof Array && data.constructor === Array) {
+                                let metaData = {} 
+                                data.forEach((fetchedData) => {
+                                    metaData[fetchedData] = xhr.getResponseHeader(fetchedData)
+                                })
+                                callback(metaData)
                             }
                             break
                         default:
