@@ -42,6 +42,18 @@ function gajaxLib(requestMethod="GET", url, callback, data = null,) {
                         case dataType.includes("xml"):
                             callback(xhr.responseXML)
                             break
+                        case requestMethod === "HEAD":
+                            if (typeof data == "string") {
+                                if (data === "all") callback(xhr.getAllResponseHeaders())
+                                else if (data === "date") callback(xhr.getResponseHeader("date"))
+                                else if (data === "Content-Type") callback(xhr.getResponseHeader("Content-Type"))
+                                else if (data === "Content-Length") callback(xhr.getResponseHeader("Content-Length"))
+                                else if (data === "Host") callback(xhr.getResponseHeader("Host"))
+                                else callback(xhr.getResponseHeader("Connection"))
+                            } else if(typeof data === "object" && typeof data === "object" && data.constructor === Object) {
+                                
+                            }
+                            break
                         default:
                             callback(xhr.responseText)
                     }
