@@ -36,8 +36,7 @@ function gajaxLib(requestMethod="GET", url, callback, data = null,) {
                let dataType = xhr.getResponseHeader("Content-Type")
                     switch (true) {
                         case dataType.includes("json"):
-                            let jsonData = JSON.parse(xhr.responseText)
-                            callback(jsonData)
+                            callback(JSON.parse(xhr.responseText))
                             break
                         case dataType.includes("xml"):
                             callback(xhr.responseXML)
