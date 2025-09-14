@@ -1,4 +1,4 @@
-function gajaxLib(requestMethod, url, callback) {
+function gajaxLib(requestMethod="GET", url, callback) {
     if (!(typeof callback == "function" && callback instanceof Function)) {
         throw new Error("GajaxLib => The third argument providied is not a function")
     }
