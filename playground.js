@@ -1,1 +1,0 @@
-let masterString = "Browser not found"

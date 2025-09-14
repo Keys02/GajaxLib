@@ -1,4 +1,4 @@
-function gajaxLib(requestMethod="GET", url, callback) {
+function gajaxLib(requestMethod="GET", url, data = null, callback) {
     if (!(typeof callback == "function" && callback instanceof Function)) {
         throw new Error("GajaxLib => The third argument providied is not a function")
     }
@@ -14,8 +14,22 @@ function gajaxLib(requestMethod="GET", url, callback) {
     }
 
     if (xhr) {
-        xhr.open(requestMethod, url)
-        xhr.send(null)
+        if (requestMethod === "POST") {
+            if (data !== null && typeof data === "object" && data.constructor === Object) {
+                let encodedUrl = encodeURI(url)
+                xhr.open(requestMethod, encodedUrl, true)
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+                let dataSent = ""
+                for (let x in data) {
+                   dataSent += `${x}=${data[x]}&`
+                }
+                dataSent = dataSent.slice(0,-1) //Remove the last '&' character
+                xhr.send(dataSent)
+            }
+        } else {
+            xhr.open(requestMethod, url, true)
+            xhr.send(null)
+        }
 
         xhr.addEventListener('readystatechange', () => {
             if (xhr.readyState === 4 && xhr.status === 200) {
