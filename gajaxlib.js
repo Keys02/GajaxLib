@@ -1,3 +1,19 @@
+/**
+ * @file - This file provides a utility function which simplifies making AJAX requests 
+ * @description - Chooses the form to return to return the data after the request is completed
+ */
+/**
+ * @param {string} requestMethod - The request Method of the asynchronous call
+ * @param {string} url - The URL the want to be made to
+ * @callback callback - The callback function which take care of what to do with the data received
+ * @param {string | string[]} [data] - The data which is sent alongside the request in a POST request scenario and the meta data being asked from the server in terms of HEAD request
+ * @return {string | Object} - The data being requested from the server
+ */
+
+/**
+ * Do something asynchronously and executes the callback on completion
+ * @param {callback} data - The data the callback function is going to handle 
+ */
 function gajaxLib(requestMethod="GET", url, callback, data = null,) {
     if (!(typeof callback == "function" && callback instanceof Function)) {
         throw new Error("GajaxLib => The third argument providied is not a function")
