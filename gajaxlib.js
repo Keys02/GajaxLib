@@ -43,7 +43,15 @@ function gajaxLib(requestMethod="GET", url, callback, data = null,) {
                             break
                         case requestMethod === "HEAD":
                             if (typeof data == "string") {
-                                if (data === "all") callback(xhr.getAllResponseHeaders())
+                                if (data === "all") {
+                                    let metaData = {}
+                                    metaData["Connection"] = xhr.getResponseHeader("Connection")
+                                    metaData["Conent-Length"] = xhr.getResponseHeader("Content-Length")
+                                    metaData["Content-Type"] = xhr.getResponseHeader("Content-Type")
+                                    metaData["Date"] = xhr.getResponseHeader("Date")
+                                    metaData["Host"] = xhr.getResponseHeader("Host")
+                                    callback(metaData)
+                                }
                                 else if (data === "date") callback(xhr.getResponseHeader("date"))
                                 else if (data === "Content-Type") callback(xhr.getResponseHeader("Content-Type"))
                                 else if (data === "Content-Length") callback(xhr.getResponseHeader("Content-Length"))
