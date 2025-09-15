@@ -14,7 +14,7 @@
  * Do something asynchronously and executes the callback on completion
  * @param {callback} data - The data the callback function is going to handle 
  */
-function gajaxLib(requestMethod="GET", url, callback, data = null,) {
+function gajaxLib(requestMethod="GET", url, callback, data = null) {
     if (!(typeof callback == "function" && callback instanceof Function)) {
         throw new Error("GajaxLib => The third argument providied is not a function")
     }
@@ -62,7 +62,7 @@ function gajaxLib(requestMethod="GET", url, callback, data = null,) {
                                 if (data === "all") {
                                     let metaData = {}
                                     metaData["Connection"] = xhr.getResponseHeader("Connection")
-                                    metaData["Conent-Length"] = xhr.getResponseHeader("Content-Length")
+                                    metaData["Content-Length"] = xhr.getResponseHeader("Content-Length")
                                     metaData["Content-Type"] = xhr.getResponseHeader("Content-Type")
                                     metaData["Date"] = xhr.getResponseHeader("Date")
                                     metaData["Host"] = xhr.getResponseHeader("Host")
